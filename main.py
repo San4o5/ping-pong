@@ -23,7 +23,7 @@ def run():
 
 
         for event in pygame.event.get():
-            if event.tupe == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 game = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
