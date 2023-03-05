@@ -18,6 +18,9 @@ def run():
 
     while game:
         window.fill((0,0,0))
+        pygame.draw.line(window, (255,255,255),
+                          (set_win["WIDTH"]//2, 0), 
+                          (set_win["WIDTH"]//2, set_win["HEIGHT"]))
         pygame.draw.rect(window, (255,0,0), player_left)
         pygame.draw.rect(window, (255,0,0), player_right)
         pygame.draw.circle(window, ball.COLOR, (ball.X, ball.Y), ball.RADIUS)
