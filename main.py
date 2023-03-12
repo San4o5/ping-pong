@@ -5,15 +5,31 @@ from random import choice
 pygame.init()
 
 
-window = pygame.display.set_mode((set_win["WIDTH"], set_win["HEIGHT"]))
+window = pygame.display.set_mode((set_win["WIDTH"], 
+                                  set_win["HEIGHT"]))
 pygame.display.set_caption("Ping-Pong")
 
 def run():
     game = True
     clock = pygame.time.Clock()
-    player_left = Board(50, 250, 20, 100, None, 5)
-    player_right = Board(750, 250, 20, 100, None, 5)
-    ball = Ball(set_win["WIDTH"] // 2, set_win["HEIGHT"] // 2, 20, (0,255,0), None, 5)
+    font = pygame.font.Font(None, 50)
+    
+    player_left = Board(start_game["LEFT_PLAYER"][0], 
+                        start_game["LEFT_PLAYER"][1], 
+                        set_board["WIDTH"], 
+                        set_board["HEIGHT"],
+                        None, 5)
+    player_right = Board(start_game["RIGHT_PLAYER"][0], 
+                        start_game["RIGHT_PLAYER"][1], 
+                        set_board["WIDTH"],
+                        set_board["HEIGHT"],
+                        None, 5)
+    
+    ball = Ball(start_game["BALL"]["START"][0], 
+                start_game["BALL"]["START"][1],
+                set_ball["RADIUS"], 
+                (0,255,0), None, 
+                set_ball["SPEED"])
 
 
     while game:
@@ -24,10 +40,9 @@ def run():
         pygame.draw.rect(window, (255,0,0), player_left)
         pygame.draw.rect(window, (255,0,0), player_right)
         pygame.draw.circle(window, ball.COLOR, (ball.X, ball.Y), ball.RADIUS)
+        win_lose_score(window, ball, player_left, player_right, font)
         player_left.move()
         player_right.move()
-        #ball.move(player_left, player_right)
-
         if ball.DIRECTION:
             ball.move(player_left)
         else:

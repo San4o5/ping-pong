@@ -1,6 +1,7 @@
 import pygame
 from data import *
 from random import choice, uniform
+from time import *
 class Board(pygame.Rect):
     def __init__(self, x, y, width, height, image, speed):
         super().__init__(x, y, width, height)
@@ -26,6 +27,8 @@ class Ball():
         self.ANGLE = choice([-self.SPEED, self.SPEED])
         self.VERTICAL = 0
         self.DIRECTION = True if self.ANGLE < 0 else False
+        self.SCORE1 = 0
+        self.SCORE2 = 0
 
     def move(self, board):
         
@@ -62,6 +65,49 @@ class Ball():
         
         self.X += self.ANGLE
         self.Y += self.VERTICAL
+
+
+def win_lose_score(window, ball, board1, board2, font):
+    window.blit(font.render(f"{ball.SCORE1} : {ball.SCORE2}", True, (128,128,128)), (set_win["WIDTH"] // 2 -20, 10))
+
+    if ball.X - ball.RADIUS < board1.x + board1.width - ball.RADIUS:
+        ball.SCORE2 += 1
+        board1.y = start_game["LEFT_PLAYER"][1]
+        board2.y = start_game["RIGHT_PLAYER"][1]
+        ball.X = start_game["BALL"]["START"][0]
+        ball.Y = start_game["BALL"]["START"][1]
+        ball.ANGLE = start_game["BALL"]["LEFT_PLAYER"]
+        ball.VERTICAL = 0
+        #time.sleep(1)
+
+    elif ball.X + ball.RADIUS > board2.x + ball.RADIUS:
+        ball.SCORE1 += 1
+        board1.y = start_game["LEFT_PLAYER"][1]
+        board2.y = start_game["RIGHT_PLAYER"][1]
+        ball.X = start_game["BALL"]["START"][0]
+        ball.Y = start_game["BALL"]["START"][1]
+        ball.ANGLE = start_game["BALL"]["RIGHT_PLAYER"]
+        ball.VERTICAL = 0
+        #time.sleep(1)
+    elif ball.SCORE1 == 5:
+        ball.SPEED = 0
+        ball.VERTICAL = 0
+        ball.ANGLE = 0  
+        board1.SPEED = 0
+        board2.SPEED = 0
+        window.blit(font.render("Лівий гравець переміг!", True, (128,128,128), 
+                                (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25)))
+    
+    elif ball.SCORE2 == 5:
+        ball.SPEED = 0
+        ball.VERTICAL = 0
+        ball.ANGLE = 0  
+        board1.SPEED = 0
+        board2.SPEED = 0
+        window.blit(font.render("Правий гравець переміг!", True, (128,128,128), 
+                                (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25)))
+    
+
 
 
 
