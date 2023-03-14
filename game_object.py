@@ -95,8 +95,8 @@ def win_lose_score(window, ball, board1, board2, font):
         ball.ANGLE = 0  
         board1.SPEED = 0
         board2.SPEED = 0
-        window.blit(font.render("Лівий гравець переміг!", True, (128,128,128), 
-                                (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25)))
+        window.blit(font.render("Лівий гравець переміг!", True, (128,128,128)),
+                    (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25))
     
     elif ball.SCORE2 == 5:
         ball.SPEED = 0
@@ -104,8 +104,8 @@ def win_lose_score(window, ball, board1, board2, font):
         ball.ANGLE = 0  
         board1.SPEED = 0
         board2.SPEED = 0
-        window.blit(font.render("Правий гравець переміг!", True, (128,128,128), 
-                                (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25)))
+        window.blit(font.render("Правий гравець переміг!", True, (128,128,128)), 
+                                (set_win["WIDTH"]//2 - 250, set_win["HEIGHT"]// 2 - 25))
     
 
 
