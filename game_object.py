@@ -76,9 +76,9 @@ def win_lose_score(window, ball, board1, board2, font):
         board2.y = start_game["RIGHT_PLAYER"][1]
         ball.X = start_game["BALL"]["START"][0]
         ball.Y = start_game["BALL"]["START"][1]
-        ball.ANGLE = start_game["BALL"]["LEFT_PLAYER"]
+        ball.ANGLE = start_game["BALL"]["LEFT_PLAYER"][2]
         ball.VERTICAL = 0
-        #time.sleep(1)
+        sleep(1)
 
     elif ball.X + ball.RADIUS > board2.x + ball.RADIUS:
         ball.SCORE1 += 1
@@ -86,9 +86,9 @@ def win_lose_score(window, ball, board1, board2, font):
         board2.y = start_game["RIGHT_PLAYER"][1]
         ball.X = start_game["BALL"]["START"][0]
         ball.Y = start_game["BALL"]["START"][1]
-        ball.ANGLE = start_game["BALL"]["RIGHT_PLAYER"]
+        ball.ANGLE = start_game["BALL"]["RIGHT_PLAYER"][2]
         ball.VERTICAL = 0
-        #time.sleep(1)
+        sleep(1)
     elif ball.SCORE1 == 5:
         ball.SPEED = 0
         ball.VERTICAL = 0
